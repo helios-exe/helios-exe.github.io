@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question - Goodwill Impairment in M&A</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+    
+    <main id="question-page">
+        <h1>Goodwill Impairment in M&A</h1>
+        <p><strong>Posted by:</strong> finance_wiz | <span class="timestamp">March 6, 2025</span></p>
+        <p>In the goodwill impairment method of mergers & acquisitions, how do we deal with impairment of goodwill on the balance sheet? Is there some test we can use?</p>
+        
+        <hr>
+        <h2>Answers</h2>
+        
+        <div class="answer">
+            <p><strong>Answered by:</strong> accounting_pro | <span class="timestamp">March 6, 2025</span></p>
+            <p>Goodwill impairment is tested annually using the two-step impairment test. The first step checks if the fair value of a reporting unit is less than its carrying amount. If it is, the second step calculates the impairment loss.</p>
+            <button class="upvote-btn">▲ Upvote</button> <span class="upvote-count" id="upvote1">0</span>
+        </div>
+        
+        <div class="answer">
+            <p><strong>Answered by:</strong> m&a_expert | <span class="timestamp">March 6, 2025</span></p>
+            <p>Newer accounting standards have replaced the two-step test with a simplified one-step test. If goodwill’s carrying value exceeds its fair value, an impairment charge is recorded directly.</p>
+            <button class="upvote-btn">▲ Upvote</button> <span class="upvote-count" id="upvote2">0</span>
+        </div>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const upvoteButtons = document.querySelectorAll(".upvote-btn");
+            upvoteButtons.forEach((button, index) => {
+                let count = localStorage.getItem(`goodwill_upvotes_${index}`) || 0;
+                document.getElementById(`upvote${index + 1}`).textContent = count;
+                
+                button.addEventListener("click", function() {
+                    count++;
+                    localStorage.setItem(`goodwill_upvotes_${index}`, count);
+                    document.getElementById(`upvote${index + 1}`).textContent = count;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

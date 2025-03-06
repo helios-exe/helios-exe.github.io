@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="profile.html">Profile</a>
+    </nav>
+    
+    <main id="profile-page">
+        <h1>User Profile</h1>
+        <p><strong>Username:</strong> student123</p>
+        <p><strong>EXP (Upvotes Received):</strong> <span id="exp-counter">0</span></p>
+        
+        <h2>Achievements</h2>
+        <ul id="achievements">
+            <li>#1 in Economics</li>
+            <li>Top Contributor in Finance</li>
+        </ul>
+    </main>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let totalUpvotes = 0;
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                if (key.includes("upvotes")) {
+                    totalUpvotes += parseInt(localStorage.getItem(key));
+                }
+            }
+            document.getElementById("exp-counter").textContent = totalUpvotes;
+        });
+    </script>
+</body>
+</html>

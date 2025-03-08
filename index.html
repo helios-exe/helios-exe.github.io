@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Campus Reddit Clone</title>
+    <title>Joka Q&A - Home</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,19 +12,37 @@
         <a href="profile.html">Profile</a>
     </nav>
     
-    <main id="home">
-        <h1>Joka Q&A </h1>
-        <select id="sort">
-            <option value="latest">Latest</option>
-            <option value="popular">Most Upvoted</option>
+    <main>
+        <h1>Joka Q&A</h1>
+        <p>Welcome to Joka Q&A, your college's dedicated question-and-answer forum.</p>
+        
+        <label for="filter">Filter by Subject:</label>
+        <select id="filter">
+            <option value="all">All</option>
+            <option value="economics">Economics</option>
+            <option value="finance">Finance</option>
         </select>
         
-        <ul id="questions-list">
-            <li><a href="question_page1.html">Question about Philips Curve <span class="flair">Economics</span></a></li>
-            <li><a href="question_page2.html">Goodwill Impairment in M&A <span class="flair">Finance</span></a></li>
+        <h2>Recent Questions</h2>
+        <ul id="question-list">
+            <li data-subject="economics"><a href="question_philips.html">Question about Philips Curve</a></li>
+            <li data-subject="finance"><a href="question_goodwill.html">Goodwill Impairment in M&A</a></li>
         </ul>
     </main>
-    
-    <script src="script.js"></script>
+
+    <script>
+        document.getElementById("filter").addEventListener("change", function() {
+            let selectedSubject = this.value;
+            let questions = document.querySelectorAll("#question-list li");
+            
+            questions.forEach(question => {
+                if (selectedSubject === "all" || question.getAttribute("data-subject") === selectedSubject) {
+                    question.style.display = "list-item";
+                } else {
+                    question.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

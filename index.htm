@@ -93,11 +93,11 @@
     chest.style.pointerEvents = 'none';
 
     setTimeout(() => {
-      reveal.style.opacity = '1';
-      reveal.style.pointerEvents = 'auto';
-      message.style.opacity = '1';
-    }, 1000); // after fade out
-  });
+	  chest.style.display = 'none';
+	  reveal.style.opacity = '1';
+	  reveal.style.pointerEvents = 'auto';
+	  message.style.opacity = '1';
+}, 1000);
 </script>
 <script>
   const snowflakeCount = 30;

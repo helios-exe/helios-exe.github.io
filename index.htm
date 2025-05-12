@@ -11,7 +11,27 @@
       overflow-x: hidden;
 	  background-color: #e6ccff; /* light purple */
     }
+    #chest {
+      width: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
 
+    #chest:hover {
+      transform: scale(1.05);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 1.2em;
+      display: none;
+      padding: 20px;
+      background-color: #fff8dc;
+      border: 2px solid #deb887;
+      border-radius: 12px;
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
     @keyframes snowflakes-fall {
       0% { top: -10% }
       100% { top: 100% }
@@ -48,6 +68,21 @@
   </style>
 </head>
 <body>
+
+
+  <h2>Click the treasure chest!</h2>
+  <img id="chest" src="closed.png" alt="Treasure Chest">
+  <div id="message">Happy Birthday! Will you be my Player 2?</div>
+
+  <script>
+    const chest = document.getElementById('chest');
+    const message = document.getElementById('message');
+
+    chest.addEventListener('click', () => {
+      chest.src = 'open.png'; // Switch to open chest image
+      message.style.display = 'block';
+    });
+  </script>
 
 </body>
 </html>

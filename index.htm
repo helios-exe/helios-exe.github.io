@@ -1,69 +1,52 @@
+<script>
+  const snowflakeCount = 30;
+  const imageOptions = ['Kirby small.png', 'Kuromi.png'];
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Snowflakes</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      overflow-x: hidden;
-	  background-color: #e6ccff; /* light purple */
+  // create container
+  const container = document.createElement('div');
+  container.style.position = 'fixed';
+  container.style.top = '0';
+  container.style.left = '0';
+  container.style.width = '100%';
+  container.style.height = '100%';
+  container.style.pointerEvents = 'none';
+  container.style.overflow = 'hidden';
+  container.style.zIndex = '9999';
+  document.body.appendChild(container);
+
+  // create keyframe style
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes snowflake-fall {
+      0% { top: -10%; transform: translateX(0); opacity: 1; }
+      50% { transform: translateX(30px); }
+      100% { top: 100%; transform: translateX(-30px); opacity: 0.8; }
     }
-
-    @keyframes snowflakes-fall {
-      0% { top: -10% }
-      100% { top: 100% }
-    }
-
-    @keyframes snowflakes-shake {
-      0%, 100% { transform: translateX(0) }
-      50% { transform: translateX(80px) }
-    }
-
     .snowflake {
-      position: fixed;
+      position: absolute;
       top: -10%;
-      z-index: 9999;
-      user-select: none;
-      animation-name: snowflakes-fall, snowflakes-shake;
-      animation-duration: 10s, 3s;
-      animation-timing-function: linear, ease-in-out;
-      animation-iteration-count: infinite, infinite;
-      animation-play-state: running, running;
+      animation-name: snowflake-fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
+  `;
+  document.head.appendChild(style);
 
-    .snowflake:nth-of-type(1) { left: 10%; animation-delay: 1s, 1s; }
-    .snowflake:nth-of-type(2) { left: 20%; animation-delay: 2s, 1.5s; }
-    .snowflake:nth-of-type(3) { left: 30%; animation-delay: 3s, 2s; }
-    .snowflake:nth-of-type(4) { left: 40%; animation-delay: 4s, 2.5s; }
-    .snowflake:nth-of-type(5) { left: 50%; animation-delay: 5s, 3s; }
-    .snowflake:nth-of-type(6) { left: 60%; animation-delay: 6s, 2s; }
-    .snowflake:nth-of-type(7) { left: 70%; animation-delay: 2.5s, 1s; }
-    .snowflake:nth-of-type(8) { left: 80%; animation-delay: 1s, 0s; }
-    .snowflake:nth-of-type(9) { left: 90%; animation-delay: 3s, 1.5s; }
-    .snowflake:nth-of-type(10) { left: 25%; animation-delay: 2s, 0s; }
-    .snowflake:nth-of-type(11) { left: 65%; animation-delay: 4s, 2.5s; }
-  </style>
-</head>
-<body>
+  // generate snowflakes
+  for (let i = 0; i < snowflakeCount; i++) {
+    const flake = document.createElement('div');
+    flake.classList.add('snowflake');
 
-  <div class="snowflakes">
-    <div class="snowflake"><img src="Kirby small.png" style="width:60px;" /></div>
-    <div class="snowflake"><img src="Kuromi.png" style="width:80px;" /></div>
-    <div class="snowflake"><img src="Kuromi.png" style="width:80px;" /></div>
-    <div class="snowflake"><img src="Kirby small.png" style="width:60px;" /></div>
-    <div class="snowflake"><img src="Kuromi.png" style="width:80px;" /></div>
-    <div class="snowflake"><img src="Kirby small.png" style="width:60px;" /></div>
-    <div class="snowflake"><img src="Kuromi.png" style="width:80px;" /></div>
-    <div class="snowflake"><img src="Kirby small.png" style="width:60px;" /></div>
-    <div class="snowflake"><img src="Kuromi.png" style="width:80px;" /></div>
-    <div class="snowflake"><img src="Kirby small.png" style="width:60px;" /></div>
-    <div class="snowflake"><img src="Kuromi.png" style="width:80px;" /></div>
-    <div class="snowflake"><img src="Kirby small.png" style="width:60px;" /></div>
-  </div>
+    const img = document.createElement('img');
+    img.src = imageOptions[Math.floor(Math.random() * imageOptions.length)];
+    img.style.width = '20px';
+    img.style.pointerEvents = 'none';
 
-</body>
-</html>
+    flake.style.left = `${Math.random() * 100}%`;
+    flake.style.animationDelay = `${Math.random() * 10}s`;
+    flake.style.animationDuration = `${7 + Math.random() * 5}s`;
 
+    flake.appendChild(img);
+    container.appendChild(flake);
+  }
+</script>

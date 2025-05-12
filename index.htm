@@ -71,19 +71,26 @@
   // create keyframe style
   const style = document.createElement('style');
   style.textContent = `
-    @keyframes snowflake-fall {
-      0% { top: -10%; transform: translateX(0); opacity: 1; }
-      50% { transform: translateX(30px); }
-      100% { top: 100%; transform: translateX(-30px); opacity: 0.8; }
-    }
-    .snowflake {
-      position: absolute;
-      top: -10%;
-      animation-name: snowflake-fall;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-  `;
+  @keyframes snowflake-fall {
+    0% { top: -10%; }
+    100% { top: 100%; }
+  }
+
+  @keyframes snowflake-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(15px); }
+    50% { transform: translateX(-15px); }
+    75% { transform: translateX(10px); }
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -10%;
+    animation-name: snowflake-fall, snowflake-shake;
+    animation-timing-function: linear, ease-in-out;
+    animation-iteration-count: infinite, infinite;
+  }
+`;
   document.head.appendChild(style);
 
   // generate snowflakes

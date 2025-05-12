@@ -17,14 +17,24 @@
 	  top: 50%;
 	  left: 50%;
 	  transform: translate(-50%, -50%);
-	  background-color: #6a0dad; /* darker purple */
-	  color: white;
-	  padding: 20px 40px;
+	  background-color: #6a0dad;
+	  padding: 20px;
 	  border-radius: 16px;
-	  font-family: sans-serif;
-	  font-size: 1.2rem;
 	  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-	  z-index: 10000; /* on top of snowflakes */
+	  z-index: 10000;
+	  text-align: center;
+	}
+
+	#chest-img {
+	  width: 80px;
+	  cursor: pointer;
+	}
+
+	#message {
+	  margin-top: 15px;
+	  color: white;
+	  font-size: 1.2rem;
+	  display: none;
 	}
 
     @keyframes snowflakes-fall {
@@ -63,10 +73,20 @@
   </style>
 </head>
 <body>
-<div id="center-box">Hello!</div>
+<div id="center-box">
+  <img id="chest-img" src="Chest.png" alt="Chest" />
+  <div id="message">You found the secret!</div>
+</div>
 </body>
 </html>
+<script>
+  const chest = document.getElementById('chest-img');
+  const message = document.getElementById('message');
 
+  chest.addEventListener('click', () => {
+    message.style.display = 'block';
+  });
+</script>
 <script>
   const snowflakeCount = 30;
   const imageOptions = ['Kirby small.png', 'Kuromi.png'];

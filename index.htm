@@ -12,29 +12,37 @@
 	  background-color: #e6ccff; /* light purple */
     }
 	
-	#center-box {
+	#birthday-container {
 	  position: fixed;
 	  top: 50%;
 	  left: 50%;
 	  transform: translate(-50%, -50%);
 	  background-color: #6a0dad;
-	  padding: 20px;
-	  border-radius: 16px;
-	  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-	  z-index: 10000;
+	  color: white;
 	  text-align: center;
+	  padding: 30px;
+	  border-radius: 20px;
+	  font-family: sans-serif;
+	  z-index: 10000;
+	  box-shadow: 0 0 20px rgba(0,0,0,0.4);
 	}
 
-	#chest-img {
-	  width: 80px;
+	#chest-img, #reveal-img {
+	  width: 120px;
+	  margin-top: 20px;
 	  cursor: pointer;
+	  transition: opacity 1s ease;
+	}
+
+	#reveal-img, #message {
+	  opacity: 0;
+	  pointer-events: none;
+	  transition: opacity 1.5s ease;
 	}
 
 	#message {
-	  margin-top: 15px;
-	  color: white;
+	  margin-top: 20px;
 	  font-size: 1.2rem;
-	  display: none;
 	}
 
     @keyframes snowflakes-fall {
@@ -73,18 +81,28 @@
   </style>
 </head>
 <body>
-<div id="center-box">
+<div id="birthday-container">
+  <h1>Happy Birthday</h1>
   <img id="chest-img" src="Chest.png" alt="Chest" />
-  <div id="message">You found the secret!</div>
+  <img id="reveal-img" src="HumanFallFlat.png" alt="Surprise" />
+  <div id="message">Wishing you the silliest, chillest, most joyful birthday 🎉</div>
 </div>
 </body>
 </html>
 <script>
   const chest = document.getElementById('chest-img');
+  const reveal = document.getElementById('reveal-img');
   const message = document.getElementById('message');
 
   chest.addEventListener('click', () => {
-    message.style.display = 'block';
+    chest.style.opacity = '0';
+    chest.style.pointerEvents = 'none';
+
+    setTimeout(() => {
+      reveal.style.opacity = '1';
+      reveal.style.pointerEvents = 'auto';
+      message.style.opacity = '1';
+    }, 1000); // after fade out
   });
 </script>
 <script>
